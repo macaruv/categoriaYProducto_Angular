@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2>Gestionar Categorías</h2>
+  
+  <div class="form-group">
+    <label for="searchId">Buscar por ID Categoría</label>
+    <input type="number" id="searchId" class="form-control" [(ngModel)]="searchId" name="searchId">
+    <button class="btn btn-primary mt-2" (click)="loadCategoria()">Buscar</button>
+    <button type="button" class="btn btn-info mt-2" (click)="clearFields()">Limpiar Campos</button>
+  </div>
+  
+  <form (ngSubmit)="onSubmit()" #categoriaForm="ngForm">
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input type="text" id="nombre" class="form-control" [(ngModel)]="categoria.nombreCategoria" name="nombre" required>
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <input type="text" id="descripcion" class="form-control" [(ngModel)]="categoria.descripcionCategoria" name="descripcion" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Crear/Actualizar Categoría</button>
+  </form>
+
+  <div *ngIf="message" class="alert alert-info mt-3">{{ message }}</div>
+
+  <h3 class="mt-4">Eliminar Categoría</h3>
+  <div class="form-group">
+    <label for="categoriaId">ID Categoría</label>
+    <input type="text" id="categoriaId" class="form-control" [(ngModel)]="categoriaId" name="categoriaId">
+  </div>
+  <button class="btn btn-danger mt-2" (click)="onDelete()">Eliminar Categoría</button>
+</div>

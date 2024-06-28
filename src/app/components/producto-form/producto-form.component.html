@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <h2>Gestionar Productos</h2>
+  
+  <div class="form-group">
+    <label for="buscarIdProducto">Buscar por ID Producto</label>
+    <input type="number" id="buscarIdProducto" class="form-control" [(ngModel)]="buscarIdProducto" name="buscarIdProducto">
+    <button class="btn btn-primary mt-2" (click)="loadProducto()">Buscar</button>
+    <button type="button" class="btn btn-info mt-2" (click)="clearFields()">Limpiar Campos</button>
+  </div>
+  
+  <form (ngSubmit)="onSubmit()" #productoForm="ngForm">
+    <div class="form-group">
+      <label for="categoriaId">ID Categoría</label>
+      <select id="categoriaId" class="form-control" [(ngModel)]="categoriaId" name="categoriaId" required>
+        <option *ngFor="let categoria of categorias" [value]="categoria.idCategoria">{{ categoria.nombreCategoria }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="nombreProducto">Nombre</label>
+      <input type="text" id="nombreProducto" class="form-control" [(ngModel)]="producto.nombreProducto" name="nombreProducto" required>
+    </div>
+    <div class="form-group">
+      <label for="descripcionProducto">Descripción</label>
+      <input type="text" id="descripcionProducto" class="form-control" [(ngModel)]="producto.descripcionProducto" name="descripcionProducto" required>
+    </div>
+    <div class="form-group">
+      <label for="existenciaProducto">Existencia</label>
+      <input type="number" id="existenciaProducto" class="form-control" [(ngModel)]="producto.existenciaProducto" name="existenciaProducto" required>
+    </div>
+    <div class="form-group">
+      <label for="precioProducto">Precio</label>
+      <input type="number" id="precioProducto" class="form-control" [(ngModel)]="producto.precioProducto" name="precioProducto" required>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Crear/Actualizar Producto</button>
+  </form>
+
+  <div *ngIf="message" class="alert alert-info mt-3">{{ message }}</div>
+
+  <h3 class="mt-4">Eliminar Producto</h3>
+  <div class="form-group">
+    <label for="productoId">ID Producto</label>
+    <input type="number" id="productoId" class="form-control" [(ngModel)]="producto.idProducto" name="productoId">
+  </div>
+  <button class="btn btn-danger mt-2" (click)="onDelete()">Eliminar Producto</button>
+</div>
